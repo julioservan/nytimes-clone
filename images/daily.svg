@@ -1,0 +1,22 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_daily_icon)">
+<path d="M55.8987 0H8.10133C3.62709 0 0 3.62706 0 8.10127V55.8983C0 60.3725 3.62709 63.9995 8.10133 63.9995H55.8987C60.3729 63.9995 64 60.3725 64 55.8983V8.10127C64 3.62706 60.3729 0 55.8987 0Z" fill="black" stroke="black" stroke-width="0.266667" stroke-miterlimit="10"/>
+<path d="M60.7597 33.3552H48.5323V45.842H60.7597V33.3552Z" fill="white" stroke="black" stroke-width="0.266667" stroke-miterlimit="10"/>
+<path d="M60.7597 48.5422V55.8981C60.7597 58.5769 58.5777 60.7589 55.8989 60.7589H48.5323V48.5422H60.7597Z" fill="white" stroke="black" stroke-width="0.266667" stroke-miterlimit="10"/>
+<path d="M45.8316 48.5422H33.3448V60.7589H45.8316V48.5422Z" fill="white" stroke="black" stroke-width="0.266667" stroke-miterlimit="10"/>
+<path d="M30.6447 48.5422H18.1578V60.7589H30.6447V48.5422Z" fill="white" stroke="black" stroke-width="0.266667" stroke-miterlimit="10"/>
+<path d="M30.6447 33.3552H18.1578V45.842H30.6447V33.3552Z" fill="white" stroke="black" stroke-width="0.266667" stroke-miterlimit="10"/>
+<path d="M15.4573 33.3552H3.2406V45.842H15.4573V33.3552Z" fill="white" stroke="black" stroke-width="0.266667" stroke-miterlimit="10"/>
+<path d="M15.4573 18.1685H3.2406V30.6552H15.4573V18.1685Z" fill="white" stroke="black" stroke-width="0.266667" stroke-miterlimit="10"/>
+<path d="M60.7597 18.1685H48.5323V30.6552H60.7597V18.1685Z" fill="white" stroke="black" stroke-width="0.266667" stroke-miterlimit="10"/>
+<path d="M45.8316 18.1685H33.3448V30.6552H45.8316V18.1685Z" fill="white" stroke="black" stroke-width="0.266667" stroke-miterlimit="10"/>
+<path d="M45.8316 3.24048H33.3448V15.4678H45.8316V3.24048Z" fill="white" stroke="black" stroke-width="0.266667" stroke-miterlimit="10"/>
+<path d="M30.6447 3.24048H18.1578V15.4678H30.6447V3.24048Z" fill="white" stroke="black" stroke-width="0.266667" stroke-miterlimit="10"/>
+<path d="M15.4571 3.24045V15.4678H3.2406V8.101C3.2406 5.42219 5.41169 3.24023 8.1014 3.24023L15.4571 3.24045Z" fill="white" stroke="black" stroke-width="0.266667" stroke-miterlimit="10"/>
+</g>
+<defs>
+<clipPath id="clip0_daily_icon">
+<rect width="64" height="64" rx="4" fill="white"/>
+</clipPath>
+</defs>
+</svg>
