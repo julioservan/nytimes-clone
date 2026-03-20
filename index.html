@@ -52,7 +52,6 @@
     align-items: center;
     justify-content: space-between;
     padding: 5px 0;
-    border-bottom: 1px solid var(--nyt-border);
     font-family: var(--nyt-sans);
     font-size: 12px;
     height: 36px;
@@ -116,8 +115,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 8px 0;
-    min-height: 52px;
+    padding: 10px 0 12px;
+    min-height: 58px;
   }
   .masthead-left {
     font-family: var(--nyt-sans);
@@ -130,8 +129,8 @@
     text-align: center;
     line-height: 1;
   }
-  .masthead-logo svg {
-    width: 340px;
+  .masthead-logo svg, .masthead-logo img {
+    width: 380px;
     height: auto;
   }
   .masthead-right {
@@ -146,8 +145,8 @@
      SECTION NAV
      ═══════════════════════════════════════════════════ */
   .section-nav {
-    border-top: 1px solid var(--nyt-border);
-    border-bottom: 1px solid var(--nyt-border);
+    border-top: 2px solid var(--nyt-black);
+    border-bottom: 2px solid var(--nyt-black);
     max-width: 1240px;
     margin: 0 auto;
     padding: 0 20px;
@@ -187,11 +186,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 20px;
+    gap: 24px;
     padding: 10px 0;
     font-family: var(--nyt-sans);
     font-size: 13px;
-    font-weight: 500;
+    font-weight: 600;
     color: var(--nyt-gray-dark);
     border-bottom: 1px solid var(--nyt-border);
   }
@@ -895,7 +894,7 @@
   </div>
   <div class="masthead-logo"><img src="nytimeslogo.svg" alt="The New York Times"></div>
   <div class="masthead-right">
-    Nasdaq <span class="nasdaq-val">-2.09% ↓</span>
+    Nasdaq <span class="nasdaq-val">-2.01% ↓</span>
   </div>
 </div>
 
@@ -922,9 +921,9 @@
 <!-- ═══ LIVE TICKER ═══ -->
 <div class="inner-max live-ticker">
   <span class="live-badge">LIVE</span>
+  <a href="#">Trump Administration <span class="time-ago">3h ago</span></a>
+  <a href="#">War in Middle East <span class="time-ago">3h ago</span></a>
   <a href="#">N.C.A.A. Tournament</a>
-  <a href="#">War in Middle East <span class="time-ago">20m ago</span></a>
-  <a href="#">Trump Administration <span class="time-ago">32m ago</span></a>
 </div>
 
 <!-- ═══ MAIN CONTENT ═══ -->
