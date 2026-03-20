@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The New York Times - Breaking News, US News, World News and Videos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Noto+Serif:ital,wght@0,400;0,500;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --nyt-black: #121212;
+    --nyt-gray-dark: #363636;
+    --nyt-gray: #666;
+    --nyt-gray-light: #999;
+    --nyt-gray-lighter: #ccc;
+    --nyt-border: #e2e2e2;
+    --nyt-border-dark: #c7c7c7;
+    --nyt-red: #d0021b;
+    --nyt-blue: #326891;
+    --nyt-bg: #fff;
+    --nyt-serif: 'nyt-cheltenham', 'Noto Serif', Georgia, 'Times New Roman', serif;
+    --nyt-sans: 'nyt-franklin', 'Helvetica Neue', Arial, sans-serif;
+    --nyt-imperial: 'UnifrakturMaguntia', cursive;
+  }
+
+  body {
+    font-family: var(--nyt-serif);
+    background: var(--nyt-bg);
+    color: var(--nyt-black);
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; text-decoration: none; cursor: pointer; }
+  a:hover { text-decoration: underline; }
+  img { display: block; max-width: 100%; }
+
+  /* ═══════════════════════════════════════════════════
+     TOP BAR - Edition links + Give The Times + Account
+     ═══════════════════════════════════════════════════ */
+  .inner-max {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 0;
+    border-bottom: 1px solid var(--nyt-border);
+    font-family: var(--nyt-sans);
+    font-size: 12px;
+    height: 36px;
+  }
+  .top-bar-left {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .top-bar-left .search-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+  .top-bar-center {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--nyt-gray-dark);
+  }
+  .top-bar-center a { color: var(--nyt-gray-dark); }
+  .top-bar-center a:hover { text-decoration: underline; }
+  .top-bar-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .give-btn {
+    background: var(--nyt-red);
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    font-size: 11px;
+    font-family: var(--nyt-sans);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    border-radius: 3px;
+  }
+  .give-btn:hover { background: #b8011a; }
+  .account-link {
+    font-size: 12px;
+    font-family: var(--nyt-sans);
+    color: var(--nyt-gray-dark);
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    cursor: pointer;
+  }
+  .account-link .chevron { font-size: 8px; }
+
+  /* ═══════════════════════════════════════════════════
+     MASTHEAD
+     ═══════════════════════════════════════════════════ */
+  .masthead {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 0;
+    min-height: 52px;
+  }
+  .masthead-left {
+    font-family: var(--nyt-sans);
+    font-size: 11px;
+    color: var(--nyt-gray);
+    line-height: 1.5;
+  }
+  .masthead-left a { color: var(--nyt-gray); text-decoration: underline; }
+  .masthead-logo {
+    text-align: center;
+    line-height: 1;
+  }
+  .masthead-logo svg {
+    width: 340px;
+    height: auto;
+  }
+  .masthead-right {
+    font-family: var(--nyt-sans);
+    font-size: 11px;
+    color: var(--nyt-gray);
+    text-align: right;
+  }
+  .nasdaq-val { color: var(--nyt-red); font-weight: 600; }
+
+  /* ═══════════════════════════════════════════════════
+     SECTION NAV
+     ═══════════════════════════════════════════════════ */
+  .section-nav {
+    border-top: 1px solid var(--nyt-border);
+    border-bottom: 1px solid var(--nyt-border);
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  .section-nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .section-nav ul::-webkit-scrollbar { display: none; }
+  .section-nav li a {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 11px 12px;
+    font-family: var(--nyt-sans);
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--nyt-gray-dark);
+    white-space: nowrap;
+    transition: color 0.15s;
+  }
+  .section-nav li a:hover { color: var(--nyt-black); text-decoration: none; }
+  .section-nav .chev {
+    font-size: 7px;
+    margin-top: 1px;
+    color: var(--nyt-gray-light);
+  }
+
+  /* ═══════════════════════════════════════════════════
+     LIVE TICKER
+     ═══════════════════════════════════════════════════ */
+  .live-ticker {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px 0;
+    font-family: var(--nyt-sans);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--nyt-gray-dark);
+    border-bottom: 1px solid var(--nyt-border);
+  }
+  .live-ticker .live-badge {
+    color: var(--nyt-red);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .live-ticker .live-badge::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    background: var(--nyt-red);
+    border-radius: 50%;
+    display: inline-block;
+    animation: pulse 1.5s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+  .live-ticker a { color: var(--nyt-gray-dark); }
+  .live-ticker a:hover { text-decoration: underline; }
+  .live-ticker .time-ago {
+    color: var(--nyt-red);
+    font-size: 11px;
+    margin-left: 4px;
+  }
+
+  /* ═══════════════════════════════════════════════════
+     SITE WRAPPER
+     ═══════════════════════════════════════════════════ */
+  .site-wrapper {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* ═══════════════════════════════════════════════════
+     HERO SECTION - 3 columns
+     ═══════════════════════════════════════════════════ */
+  .hero {
+    display: grid;
+    grid-template-columns: 270px 1fr 280px;
+    border-bottom: 1px solid var(--nyt-border);
+    padding: 20px 0;
+    gap: 0;
+  }
+  .hero-col { padding: 0 20px; }
+  .hero-col:first-child { padding-left: 0; }
+  .hero-col:last-child { padding-right: 0; }
+  .hero-col + .hero-col { border-left: 1px solid var(--nyt-border); }
+
+  /* Hero Left */
+  .hero-left .story-headline {
+    font-family: var(--nyt-serif);
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.18;
+    margin-bottom: 10px;
+  }
+  .hero-left .story-summary {
+    font-family: var(--nyt-serif);
+    font-size: 14px;
+    color: var(--nyt-gray-dark);
+    line-height: 1.5;
+    margin-bottom: 8px;
+  }
+  .min-read {
+    font-family: var(--nyt-sans);
+    font-size: 11px;
+    color: var(--nyt-gray-light);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  /* Hero Center - Image carousel */
+  .hero-center { position: relative; }
+  .carousel-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0;
+  }
+  .carousel-img {
+    width: 100%;
+    height: 340px;
+    object-fit: cover;
+    background: #2a2a2a;
+    position: relative;
+  }
+  .carousel-img-placeholder {
+    width: 100%;
+    height: 340px;
+    background: linear-gradient(160deg, #3a3a3a 0%, #555 40%, #444 60%, #333 100%);
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+  }
+  .carousel-location {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: rgba(255,255,255,0.92);
+    font-family: var(--nyt-sans);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 8px;
+    color: var(--nyt-black);
+  }
+  .carousel-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 30px 14px 10px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.7));
+    color: #fff;
+    font-family: var(--nyt-sans);
+    font-size: 12px;
+    line-height: 1.4;
+  }
+  .carousel-credit {
+    font-size: 10px;
+    color: rgba(255,255,255,0.65);
+    margin-top: 3px;
+  }
+  .carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    padding: 12px 0 4px;
+  }
+  .carousel-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--nyt-gray-lighter);
+    cursor: pointer;
+  }
+  .carousel-dot.active { background: var(--nyt-black); }
+  .carousel-arrows {
+    position: absolute;
+    right: 0;
+    bottom: -28px;
+    display: flex;
+    gap: 6px;
+  }
+  .carousel-arrow-wrap { position: relative; }
+  .carousel-arrow {
+    width: 28px;
+    height: 28px;
+    border: 1px solid var(--nyt-border-dark);
+    border-radius: 50%;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 12px;
+    color: var(--nyt-gray);
+    transition: border-color 0.15s;
+  }
+  .carousel-arrow:hover { border-color: var(--nyt-gray); }
+  .carousel-share {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 28px;
+    height: 28px;
+    background: rgba(0,0,0,0.5);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  .carousel-share svg { width: 14px; height: 14px; fill: #fff; }
+
+  /* Hero Right - LIVE stories */
+  .hero-right .live-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .hero-right .live-label {
+    font-family: var(--nyt-sans);
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--nyt-red);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .hero-right .live-time {
+    font-family: var(--nyt-sans);
+    font-size: 11px;
+    color: var(--nyt-red);
+  }
+  .hero-right .story-headline {
+    font-family: var(--nyt-serif);
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+  .hero-right .story-summary {
+    font-family: var(--nyt-serif);
+    font-size: 14px;
+    color: var(--nyt-gray-dark);
+    line-height: 1.45;
+    margin-bottom: 6px;
+  }
+  .see-more {
+    font-family: var(--nyt-sans);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--nyt-gray-dark);
+    cursor: pointer;
+  }
+  .see-more:hover { text-decoration: underline; }
+  .analysis-label {
+    font-family: var(--nyt-sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--nyt-gray);
+    margin-bottom: 4px;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid var(--nyt-border);
+  }
+
+  /* ═══════════════════════════════════════════════════
+     MID SECTION - Economy + Chart + Stories
+     ═══════════════════════════════════════════════════ */
+  .mid-section {
+    display: grid;
+    grid-template-columns: 270px 1fr 280px;
+    border-bottom: 1px solid var(--nyt-border);
+    padding: 18px 0;
+    gap: 0;
+  }
+  .mid-col { padding: 0 20px; }
+  .mid-col:first-child { padding-left: 0; }
+  .mid-col:last-child { padding-right: 0; }
+  .mid-col + .mid-col { border-left: 1px solid var(--nyt-border); }
+
+  .mid-headline {
+    font-family: var(--nyt-serif);
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+  .mid-summary {
+    font-family: var(--nyt-serif);
+    font-size: 14px;
+    color: var(--nyt-gray-dark);
+    line-height: 1.5;
+    margin-bottom: 6px;
+  }
+
+  /* Chart */
+  .chart-area {
+    padding: 0 10px;
+  }
+  .chart-title {
+    font-family: var(--nyt-sans);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--nyt-black);
+    margin-bottom: 2px;
+  }
+  .chart-subtitle {
+    font-family: var(--nyt-sans);
+    font-size: 12px;
+    color: var(--nyt-gray);
+    margin-bottom: 10px;
+  }
+  .chart-placeholder {
+    width: 100%;
+    height: 180px;
+    position: relative;
+  }
+  .chart-placeholder svg { width: 100%; height: 100%; }
+  .chart-credit {
+    font-family: var(--nyt-sans);
+    font-size: 10px;
+    color: var(--nyt-gray-light);
+    text-align: right;
+    margin-top: 6px;
+  }
+
+  /* ═══════════════════════════════════════════════════
+     THUMBNAIL CAROUSEL ROW
+     ═══════════════════════════════════════════════════ */
+  .thumb-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--nyt-border);
+    overflow-x: auto;
+    scrollbar-width: none;
+    position: relative;
+  }
+  .thumb-row::-webkit-scrollbar { display: none; }
+  .thumb-card {
+    display: flex;
+    gap: 10px;
+    min-width: 260px;
+    padding: 0 16px;
+    border-right: 1px solid var(--nyt-border);
+    flex-shrink: 0;
+  }
+  .thumb-card:first-child { padding-left: 0; }
+  .thumb-card:last-child { border-right: none; }
+  .thumb-img {
+    width: 110px;
+    height: 75px;
+    flex-shrink: 0;
+    background: linear-gradient(135deg, #8a7a6a 0%, #9a8a7a 50%, #7a6a5a 100%);
+    border-radius: 0;
+  }
+  .thumb-text h3 {
+    font-family: var(--nyt-serif);
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: 4px;
+  }
+  .thumb-row-arrow {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--nyt-border-dark);
+    border-radius: 50%;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--nyt-gray);
+    box-shadow: -4px 0 8px rgba(0,0,0,0.06);
+    z-index: 2;
+  }
+
+  /* ═══════════════════════════════════════════════════
+     TOPIC SECTIONS (Trump Admin, Immigration, etc.)
+     ═══════════════════════════════════════════════════ */
+  .topic-section {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 0;
+    padding: 0;
+  }
+  .topic-main { padding-right: 20px; border-right: 1px solid var(--nyt-border); }
+  .topic-sidebar { padding-left: 20px; }
+
+  .topic-bar {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 14px 0 12px;
+    border-bottom: 1px solid var(--nyt-border);
+    font-family: var(--nyt-sans);
+    font-size: 12px;
+    flex-wrap: wrap;
+  }
+  .topic-bar .topic-name {
+    font-weight: 800;
+    font-size: 13px;
+    color: var(--nyt-black);
+  }
+  .topic-bar a {
+    color: var(--nyt-gray);
+    font-weight: 400;
+  }
+  .topic-bar a:hover { color: var(--nyt-black); text-decoration: underline; }
+
+  .topic-story {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--nyt-border);
+  }
+  .topic-story-grid {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 18px;
+  }
+  .topic-story-text .story-headline {
+    font-family: var(--nyt-serif);
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .topic-story-text .story-summary {
+    font-family: var(--nyt-serif);
+    font-size: 14px;
+    color: var(--nyt-gray-dark);
+    line-height: 1.5;
+    margin-bottom: 6px;
+  }
+  .topic-story-img {
+    width: 100%;
+    height: auto;
+    min-height: 200px;
+    background: linear-gradient(135deg, #6a6a6a 0%, #888 50%, #555 100%);
+  }
+  .topic-story-img-tall {
+    width: 100%;
+    height: 340px;
+    background: linear-gradient(160deg, #5a4a3a 0%, #7a6a5a 40%, #4a3a2a 100%);
+  }
+
+  /* Live label inline */
+  .live-inline {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 5px;
+  }
+  .live-inline .live-label {
+    font-family: var(--nyt-sans);
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--nyt-red);
+    letter-spacing: 0.04em;
+  }
+  .live-inline .time-ago {
+    font-family: var(--nyt-sans);
+    font-size: 11px;
+    color: var(--nyt-red);
+  }
+
+  /* Byline with avatar */
+  .byline-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  .byline-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #bbb 0%, #999 100%);
+    flex-shrink: 0;
+  }
+  .byline-name {
+    font-family: var(--nyt-sans);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--nyt-gray-dark);
+  }
+
+  /* Small stories horizontal row */
+  .small-story-row {
+    display: flex;
+    gap: 0;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--nyt-border);
+  }
+  .small-story-card {
+    display: flex;
+    gap: 10px;
+    padding: 0 16px;
+    border-right: 1px solid var(--nyt-border);
+    flex: 1;
+  }
+  .small-story-card:first-child { padding-left: 0; }
+  .small-story-card:last-child { border-right: none; padding-right: 0; }
+  .small-story-img {
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+    background: linear-gradient(135deg, #777 0%, #999 100%);
+  }
+  .small-story-card h3 {
+    font-family: var(--nyt-serif);
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: 3px;
+  }
+  .small-story-card .carousel-arrow-wrap { margin-left: auto; }
+
+  /* ═══════════════════════════════════════════════════
+     OPINION SIDEBAR
+     ═══════════════════════════════════════════════════ */
+  .opinion-sidebar-title {
+    font-family: var(--nyt-serif);
+    font-size: 16px;
+    font-weight: 700;
+    padding: 14px 0 10px;
+    border-bottom: 1px solid var(--nyt-border);
+    margin-bottom: 0;
+  }
+  .opinion-item {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--nyt-border);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .opinion-item-text { flex: 1; }
+  .opinion-item .author-name {
+    font-family: var(--nyt-sans);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--nyt-gray);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 3px;
+  }
+  .opinion-item h3 {
+    font-family: var(--nyt-serif);
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.25;
+    margin-bottom: 4px;
+  }
+  .opinion-avatar-sm {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ccc 0%, #aaa 100%);
+    flex-shrink: 0;
+  }
+  .opinion-img-block {
+    width: 100%;
+    height: 180px;
+    background: linear-gradient(135deg, #4a7a9a 0%, #6a9aba 50%, #3a6a8a 100%);
+    margin-bottom: 8px;
+  }
+  .opinion-map {
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(135deg, #e8d8c8 0%, #d8c8b8 50%, #c8b8a8 100%);
+    margin-bottom: 6px;
+    border: 1px solid var(--nyt-border);
+  }
+  .opinion-two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-bottom: 1px solid var(--nyt-border);
+  }
+  .opinion-two-col .opinion-item {
+    border-bottom: none;
+    padding: 12px 10px;
+  }
+  .opinion-two-col .opinion-item:first-child { padding-left: 0; border-right: 1px solid var(--nyt-border); }
+  .opinion-two-col .opinion-item:last-child { padding-right: 0; }
+
+  /* Opinion images grid */
+  .opinion-img-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 4px;
+    margin-top: 12px;
+  }
+  .opinion-img-grid .oi {
+    background: linear-gradient(135deg, #8a6a4a 0%, #a88a6a 100%);
+    min-height: 100px;
+  }
+  .opinion-img-grid .oi:first-child { grid-row: 1 / 3; }
+  .opinion-img-credit {
+    font-family: var(--nyt-sans);
+    font-size: 10px;
+    color: var(--nyt-gray-light);
+    text-align: right;
+    margin-top: 4px;
+    font-style: italic;
+  }
+
+  /* ═══════════════════════════════════════════════════
+     IMMIGRATION / EXTRA TOPIC SECTION
+     ═══════════════════════════════════════════════════ */
+  .immigration-section { padding: 0; }
+
+  /* Large feature story */
+  .feature-story {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 18px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--nyt-border);
+  }
+  .feature-story-text .story-headline {
+    font-family: var(--nyt-serif);
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .feature-story-img {
+    width: 100%;
+    height: 280px;
+    background: linear-gradient(160deg, #5a5a4a 0%, #7a7a6a 40%, #4a4a3a 100%);
+    position: relative;
+  }
+  .img-credit {
+    font-family: var(--nyt-sans);
+    font-size: 10px;
+    color: var(--nyt-gray-light);
+    font-style: italic;
+    margin-top: 4px;
+    text-align: right;
+  }
+
+  /* Obituary / big carousel story */
+  .obit-section {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 18px;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--nyt-border);
+  }
+  .obit-img {
+    width: 100%;
+    height: 320px;
+    background: linear-gradient(160deg, #8a7a5a 0%, #b09a7a 30%, #6a5a3a 100%);
+    position: relative;
+  }
+  .obit-year {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    font-family: var(--nyt-sans);
+    font-size: 14px;
+    color: rgba(255,255,255,0.75);
+  }
+
+  /* ═══════════════════════════════════════════════════
+     RESPONSIVE
+     ═══════════════════════════════════════════════════ */
+  @media (max-width: 1024px) {
+    .hero { grid-template-columns: 1fr 1fr; }
+    .hero-left { display: none; }
+    .mid-section { grid-template-columns: 1fr 1fr; }
+    .mid-col:first-child { display: none; }
+    .topic-section { grid-template-columns: 1fr; }
+    .topic-sidebar { padding-left: 0; padding-top: 16px; border-top: 1px solid var(--nyt-border); }
+    .topic-main { border-right: none; padding-right: 0; }
+  }
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-col + .hero-col { border-left: none; border-top: 1px solid var(--nyt-border); padding-top: 16px; }
+    .hero-right { display: block; }
+    .mid-section { grid-template-columns: 1fr; }
+    .mid-col + .mid-col { border-left: none; border-top: 1px solid var(--nyt-border); padding-top: 14px; }
+    .topic-story-grid { grid-template-columns: 1fr; }
+    .feature-story { grid-template-columns: 1fr; }
+    .obit-section { grid-template-columns: 1fr; }
+    .small-story-row { flex-direction: column; }
+    .small-story-card { border-right: none; border-bottom: 1px solid var(--nyt-border); padding: 10px 0; }
+    .opinion-two-col { grid-template-columns: 1fr; }
+    .opinion-two-col .opinion-item:first-child { border-right: none; border-bottom: 1px solid var(--nyt-border); }
+    .thumb-card { min-width: 220px; }
+    .masthead-logo svg, .masthead-logo img { width: 220px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ TOP BAR ═══ -->
+<div class="inner-max top-bar">
+  <div class="top-bar-left">
+    <svg class="search-icon" viewBox="0 0 16 16" fill="none" stroke="#333" stroke-width="1.5"><circle cx="6.5" cy="6.5" r="5.5"/><line x1="10.5" y1="10.5" x2="15" y2="15"/></svg>
+  </div>
+  <div class="top-bar-center">
+    <a href="#">U.S.</a>
+    <a href="#">International</a>
+    <a href="#">Canada</a>
+    <a href="#">Español</a>
+    <a href="#">中文</a>
+  </div>
+  <div class="top-bar-right">
+    <button class="give-btn">GIVE THE TIMES</button>
+    <span class="account-link">Account <span class="chev">▾</span></span>
+  </div>
+</div>
+
+<!-- ═══ MASTHEAD ═══ -->
+<div class="inner-max masthead">
+  <div class="masthead-left">
+    Friday, March 20, 2026<br>
+    <a href="#">Today's Paper</a>
+  </div>
+  <div class="masthead-logo"><img src="nytimeslogo.svg" alt="The New York Times"></div>
+  <div class="masthead-right">
+    Nasdaq <span class="nasdaq-val">-2.09% ↓</span>
+  </div>
+</div>
+
+<!-- ═══ SECTION NAV ═══ -->
+<nav class="section-nav">
+  <div class="inner-max" style="padding: 0;">
+  <ul>
+    <li><a href="#">U.S. <span class="chev">▾</span></a></li>
+    <li><a href="#">World <span class="chev">▾</span></a></li>
+    <li><a href="#">Business <span class="chev">▾</span></a></li>
+    <li><a href="#">Arts <span class="chev">▾</span></a></li>
+    <li><a href="#">Lifestyle <span class="chev">▾</span></a></li>
+    <li><a href="#">Opinion <span class="chev">▾</span></a></li>
+    <li><a href="#">Video <span class="chev">▾</span></a></li>
+    <li><a href="#">Audio <span class="chev">▾</span></a></li>
+    <li><a href="#">Games <span class="chev">▾</span></a></li>
+    <li><a href="#">Cooking <span class="chev">▾</span></a></li>
+    <li><a href="#">Wirecutter <span class="chev">▾</span></a></li>
+    <li><a href="#">The Athletic <span class="chev">▾</span></a></li>
+  </ul>
+  </div>
+</nav>
+
+<!-- ═══ LIVE TICKER ═══ -->
+<div class="inner-max live-ticker">
+  <span class="live-badge">LIVE</span>
+  <a href="#">N.C.A.A. Tournament</a>
+  <a href="#">War in Middle East <span class="time-ago">20m ago</span></a>
+  <a href="#">Trump Administration <span class="time-ago">32m ago</span></a>
+</div>
+
+<!-- ═══ MAIN CONTENT ═══ -->
+<div class="site-wrapper">
+
+  <!-- ═══ HERO ═══ -->
+  <div class="hero">
+    <!-- Left col -->
+    <div class="hero-col hero-left">
+      <h2 class="story-headline"><a href="#">Hegseth Invokes Divine Purpose to Justify Military Might</a></h2>
+      <p class="story-summary">Defense Secretary Pete Hegseth has imbued U.S. military actions with a Christian moral underpinning that suggests they are divinely sanctioned.</p>
+      <span class="min-read">5 min read</span>
+
+      <div style="border-top: 1px solid var(--nyt-border); margin-top: 18px; padding-top: 18px;">
+        <h2 style="font-family: var(--nyt-serif); font-size: 17px; font-weight: 700; line-height: 1.2; margin-bottom: 4px;"><a href="#">G.O.P. Lawmakers Resist a Public Accounting on Iran</a></h2>
+        <span class="min-read">6 min read</span>
+      </div>
+    </div>
+
+    <!-- Center col - Image carousel -->
+    <div class="hero-col hero-center">
+      <div class="carousel-wrapper">
+        <div class="carousel-img-placeholder" style="background: none;">
+          <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;">
+            <source src="images/164901_1_20vid-eid-nowruz_wg_1080p-1.ts" type="video/mp2t">
+          </video>
+          <div class="carousel-location">Beirut, Lebanon</div>
+          <div class="carousel-caption">
+            Worshipers celebrating Eid al-Fitr at the Mohammad Al-Amin Mosque, on Friday.
+            <div class="carousel-credit">Diego Ibarra Sanchez for The New York Times</div>
+          </div>
+          <div class="carousel-share">
+            <svg viewBox="0 0 16 16"><path d="M13 5a2 2 0 100-4 2 2 0 000 4zM3 10a2 2 0 100-4 2 2 0 000 4zM13 15a2 2 0 100-4 2 2 0 000 4zM4.7 8.7l6.6 3.6M11.3 3.7l-6.6 3.6"/></svg>
+          </div>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; justify-content: space-between; padding-top: 8px;">
+        <div class="carousel-dots">
+          <div class="carousel-dot active"></div>
+          <div class="carousel-dot"></div>
+          <div class="carousel-dot"></div>
+          <div class="carousel-dot"></div>
+        </div>
+        <div style="display: flex; gap: 6px;">
+          <div class="carousel-arrow">‹</div>
+          <div class="carousel-arrow">›</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right col - LIVE stories -->
+    <div class="hero-col hero-right">
+      <div class="live-header">
+        <span class="live-label">LIVE</span>
+        <span class="live-time">12m ago</span>
+      </div>
+      <h2 class="story-headline"><a href="#">U.S. Steps Up Attacks in Strait as Energy Fears Unsettle Markets</a></h2>
+      <p class="story-summary">U.S. warplanes and attack helicopters are hitting Iranian targets in an effort to reopen the Strait of Hormuz, officials said.</p>
+      <a class="see-more" href="#">See more updates ›</a>
+
+      <div class="analysis-label">ANALYSIS</div>
+      <h2 class="story-headline"><a href="#">Israel and the U.S. Are Starting to Show Their Different Priorities in Iran</a></h2>
+      <span class="min-read">5 min read</span>
+    </div>
+  </div>
+
+  <!-- ═══ MID SECTION ═══ -->
+  <div class="mid-section">
+    <!-- Economy -->
+    <div class="mid-col">
+      <h2 class="mid-headline"><a href="#">The U.S. Economy Is Insulated From High Oil Prices. Americans Aren't.</a></h2>
+      <p class="mid-summary">The overall economy has proved resilient in recent years, even as many households have struggled. The war with Iran is following the same pattern.</p>
+      <span class="min-read">7 min read</span>
+    </div>
+
+    <!-- Chart -->
+    <div class="mid-col chart-area">
+      <div class="chart-title">Price of Brent Crude Oil</div>
+      <div class="chart-subtitle">$115 per barrel</div>
+      <div class="chart-placeholder">
+        <svg viewBox="0 0 400 160" preserveAspectRatio="none">
+          <!-- Grid lines -->
+          <line x1="0" y1="40" x2="400" y2="40" stroke="#eee" stroke-width="0.5"/>
+          <line x1="0" y1="80" x2="400" y2="80" stroke="#eee" stroke-width="0.5"/>
+          <line x1="0" y1="120" x2="400" y2="120" stroke="#eee" stroke-width="0.5"/>
+          <!-- Vertical dashed lines -->
+          <line x1="80" y1="0" x2="80" y2="160" stroke="#eee" stroke-width="0.5" stroke-dasharray="3"/>
+          <line x1="160" y1="0" x2="160" y2="160" stroke="#eee" stroke-width="0.5" stroke-dasharray="3"/>
+          <line x1="240" y1="0" x2="240" y2="160" stroke="#eee" stroke-width="0.5" stroke-dasharray="3"/>
+          <line x1="320" y1="0" x2="320" y2="160" stroke="#eee" stroke-width="0.5" stroke-dasharray="3"/>
+          <!-- Line chart path -->
+          <polyline
+            fill="none"
+            stroke="#c33"
+            stroke-width="1.5"
+            points="
+              0,140
+              15,135
+              30,130
+              45,128
+              60,125
+              75,120
+              90,118
+              105,115
+              120,100
+              135,90
+              145,85
+              150,60
+              155,55
+              160,50
+              165,55
+              170,45
+              175,50
+              180,40
+              185,35
+              190,38
+              195,42
+              200,35
+              205,30
+              210,28
+              215,32
+              220,25
+              225,30
+              230,35
+              235,30
+              240,28
+              245,33
+              250,38
+              255,35
+              260,40
+              265,42
+              270,38
+              275,35
+              280,32
+              285,28
+              290,30
+              295,35
+              300,40
+              305,45
+              310,50
+              315,52
+              320,55
+              330,70
+              340,80
+              350,85
+              360,95
+              380,110
+              400,120
+            "
+          />
+          <!-- Axis labels -->
+          <text x="40" y="156" font-family="Arial" font-size="9" fill="#999">March 16</text>
+          <text x="125" y="156" font-family="Arial" font-size="9" fill="#999">March 17</text>
+          <text x="205" y="156" font-family="Arial" font-size="9" fill="#999">March 18</text>
+          <text x="285" y="156" font-family="Arial" font-size="9" fill="#999">March 19</text>
+          <text x="360" y="156" font-family="Arial" font-size="9" fill="#999">March 20</text>
+          <!-- Y axis -->
+          <text x="0" y="44" font-family="Arial" font-size="9" fill="#999">110</text>
+          <text x="0" y="84" font-family="Arial" font-size="9" fill="#999">105</text>
+        </svg>
+      </div>
+      <div class="chart-credit">The New York Times</div>
+    </div>
+
+    <!-- Right stories -->
+    <div class="mid-col">
+      <h2 class="mid-headline" style="margin-bottom: 4px;"><a href="#">Hamas Considering Disarmament Plan From Trump's Board of Peace, Officials Say</a></h2>
+      <span class="min-read">4 min read</span>
+
+      <div style="border-top: 1px solid var(--nyt-border); margin-top: 16px; padding-top: 16px;">
+        <h2 class="mid-headline" style="margin-bottom: 4px;"><a href="#">Iran Executes 3 Men, Including a Star Teenage Wrestler</a></h2>
+        <span class="min-read">2 min read</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ THUMBNAIL CAROUSEL ROW ═══ -->
+  <div class="thumb-row" style="position: relative;">
+    <div class="thumb-card">
+      <div class="thumb-img" style="background: linear-gradient(135deg, #8a7a5a 0%, #a89a7a 100%);"></div>
+      <div class="thumb-text">
+        <h3><a href="#">A Diary of War From an Unlikely Author: the Son of Iran's President</a></h3>
+        <span class="min-read">6 min read</span>
+      </div>
+    </div>
+    <div class="thumb-card">
+      <div class="thumb-img" style="background: linear-gradient(135deg, #5a6a7a 0%, #7a8a9a 100%);"></div>
+      <div class="thumb-text">
+        <h3><a href="#">U.S. Dispatches Marines and Warships to Middle East</a></h3>
+        <span class="min-read">2 min read</span>
+      </div>
+    </div>
+    <div class="thumb-card">
+      <div class="thumb-img" style="background: linear-gradient(135deg, #9a6a4a 0%, #ba8a6a 100%);"></div>
+      <div class="thumb-text">
+        <h3><a href="#">How Iranian New Yorkers Are Celebrating Persian New Year During the War</a></h3>
+        <span class="min-read">4 min read</span>
+      </div>
+    </div>
+    <div class="thumb-card">
+      <div class="thumb-img" style="background: linear-gradient(135deg, #6a7a8a 0%, #8a9aaa 100%);"></div>
+      <div class="thumb-text">
+        <h3><a href="#">How the War in Iran Narrowed Flight Corridors Between Europe and Asia</a></h3>
+        <span class="min-read">4 min read</span>
+      </div>
+    </div>
+    <div class="thumb-row-arrow">›</div>
+  </div>
+
+  <!-- ═══ TOPIC SECTION ═══ -->
+  <div class="topic-section">
+    <div class="topic-main">
+
+      <!-- Trump Administration topic bar -->
+      <div class="topic-bar">
+        <span class="topic-name">Trump Administration</span>
+        <a href="#">Pearl Harbor Joke</a>
+        <a href="#">Pardoning Fraudsters</a>
+        <a href="#">Counterterrorism Official Resigns</a>
+        <a href="#">Homeland Security Pick</a>
+      </div>
+
+      <!-- Story 1 -->
+      <div class="topic-story">
+        <div class="topic-story-grid">
+          <div class="topic-story-text">
+            <h2 class="story-headline"><a href="#">U.S. Prosecutors Are Investigating Colombia's President, a Onetime Trump Foe</a></h2>
+            <p class="story-summary">The Justice Department is examining whether President Gustavo Petro of Colombia has ties to drug traffickers.</p>
+            <span class="min-read">4 min read</span>
+          </div>
+          <div class="topic-story-img"></div>
+        </div>
+      </div>
+
+      <!-- LIVE Story -->
+      <div class="topic-story">
+        <div class="live-inline">
+          <span class="live-label">LIVE</span>
+          <span class="time-ago">24m ago</span>
+        </div>
+        <h2 style="font-family: var(--nyt-serif); font-size: 17px; font-weight: 700; line-height: 1.2; margin-bottom: 4px;"><a href="#">Cal State System Challenges Trump's Executive Order on Transgender Athletes</a></h2>
+        <a class="see-more" href="#">See more updates ›</a>
+      </div>
+
+      <!-- Harvard story -->
+      <div class="topic-story">
+        <h2 style="font-family: var(--nyt-serif); font-size: 17px; font-weight: 700; line-height: 1.2; margin-bottom: 4px;"><a href="#">Trump Administration Sues Harvard Over Accusations of Antisemitism</a></h2>
+        <span class="min-read">5 min read</span>
+      </div>
+
+      <!-- Small stories row -->
+      <div class="small-story-row">
+        <div class="small-story-card">
+          <div class="small-story-img"></div>
+          <div>
+            <h3><a href="#">In Reversal, Trump Restores Support for House Republican Who Opposed Tariffs</a></h3>
+            <span class="min-read">3 min read</span>
+          </div>
+        </div>
+        <div class="small-story-card">
+          <div class="small-story-img" style="background: linear-gradient(135deg, #8a9a7a 0%, #aaba9a 100%);"></div>
+          <div>
+            <h3><a href="#">E.P.A. Chief to Headline Event by Group That Says There's No Climate Crisis</a></h3>
+            <span class="min-read">4 min read</span>
+          </div>
+        </div>
+        <div class="small-story-card" style="flex: 0; min-width: 36px; align-items: center; justify-content: center; display: flex; border-right: none;">
+          <div class="carousel-arrow">›</div>
+        </div>
+      </div>
+
+      <!-- Immigration topic bar -->
+      <div class="topic-bar">
+        <span class="topic-name">U.S. Immigration Crackdown</span>
+        <a href="#">Fewer Children in ICE Detention</a>
+        <a href="#">Detained While Pregnant</a>
+        <a href="#">Bovino Set to Retire</a>
+      </div>
+
+      <!-- Immigration story -->
+      <div class="topic-story">
+        <div class="topic-story-grid">
+          <div class="topic-story-text">
+            <h2 class="story-headline"><a href="#">Trump Friend Asked ICE to Detain the Mother of His Child</a></h2>
+            <span class="min-read">7 min read</span>
+            <div class="byline-row">
+              <div class="byline-avatar"></div>
+              <span class="byline-name">Megan Twohey</span>
+            </div>
+            <p class="story-summary" style="margin-top: 8px;">Last year, Paolo Zampolli, the former modeling agent who famously introduced Donald and Melania Trump, asked the administration for a favor.</p>
+            <div style="display: flex; align-items: center; gap: 10px; margin-top: 10px;">
+              <div class="carousel-dots" style="padding: 0;">
+                <div class="carousel-dot active"></div>
+                <div class="carousel-dot"></div>
+                <div class="carousel-dot"></div>
+              </div>
+              <div style="display: flex; gap: 6px;">
+                <div class="carousel-arrow">‹</div>
+                <div class="carousel-arrow">›</div>
+              </div>
+            </div>
+          </div>
+          <div class="topic-story-img-tall"></div>
+        </div>
+      </div>
+
+      <!-- More ICE story -->
+      <div class="topic-story">
+        <h2 style="font-family: var(--nyt-serif); font-size: 17px; font-weight: 700; line-height: 1.2; margin-bottom: 4px;"><a href="#">Data Shows Where ICE Has Been Most Active This Year</a></h2>
+        <span class="min-read">4 min read</span>
+      </div>
+
+      <!-- Obituary story -->
+      <div class="obit-section">
+        <div>
+          <h2 style="font-family: var(--nyt-serif); font-size: 20px; font-weight: 700; line-height: 1.2; margin-bottom: 8px;"><a href="#">Chuck Norris, Black-Belt Action Star of Movies and Television, Dies at 86</a></h2>
+          <p style="font-family: var(--nyt-serif); font-size: 14px; color: var(--nyt-gray-dark); line-height: 1.5; margin-bottom: 6px;">He channeled his martial arts skills into heroic roles onscreen in "Walker, Texas Ranger," "The Delta Force," the "Missing in Action" series and more.</p>
+          <span class="min-read">5 min read</span>
+        </div>
+        <div>
+          <div class="obit-img" style="background: none; overflow: hidden;">
+            <img src="images/mosaic-walkertexasraner-110-threeByTwoMediumAt2X-v2.webp" alt="Chuck Norris" style="width: 100%; height: 100%; object-fit: cover;">
+            <span class="obit-year">1995</span>
+            <div class="carousel-share" style="position: absolute; bottom: 10px; right: 10px;">
+              <svg viewBox="0 0 16 16" width="14" height="14"><path fill="#fff" d="M13 5a2 2 0 100-4 2 2 0 000 4zM3 10a2 2 0 100-4 2 2 0 000 4zM13 15a2 2 0 100-4 2 2 0 000 4z"/></svg>
+            </div>
+          </div>
+          <div class="img-credit">Hartmut Chepren/Columbia TriStar/Pictures</div>
+          <div style="display: flex; align-items: center; justify-content: space-between; padding-top: 8px;">
+            <div class="carousel-dots">
+              <div class="carousel-dot"></div>
+              <div class="carousel-dot active"></div>
+              <div class="carousel-dot"></div>
+              <div class="carousel-dot"></div>
+            </div>
+            <div style="display: flex; gap: 6px;">
+              <div class="carousel-arrow">‹</div>
+              <div class="carousel-arrow">›</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /topic-main -->
+
+    <!-- ═══ OPINION SIDEBAR ═══ -->
+    <div class="topic-sidebar">
+      <div class="opinion-sidebar-title">Opinion</div>
+
+      <div class="opinion-item">
+        <div class="opinion-item-text">
+          <div class="author-name">Thomas L. Friedman</div>
+          <h3><a href="#">'Once and for All' Means Never</a></h3>
+          <span class="min-read">7 min read</span>
+        </div>
+        <div class="opinion-avatar-sm"></div>
+      </div>
+
+      <div class="opinion-item">
+        <div class="opinion-item-text">
+          <div class="author-name">Lis Smith and John Guida</div>
+          <h3><a href="#">'We Don't Need More Lawyers in Congress': The Future of the Democratic Party Is Emerging</a></h3>
+          <span class="min-read">10 min read</span>
+        </div>
+      </div>
+
+      <!-- Opinion image block -->
+      <div class="opinion-item" style="display: block;">
+        <div class="opinion-img-block"></div>
+        <div class="img-credit" style="text-align: right; margin-bottom: 6px;">Nathalia Angarita for The New York Times</div>
+        <div class="author-name">Peter S. Canellos</div>
+        <h3 style="font-family: var(--nyt-serif); font-size: 15px; font-weight: 600; line-height: 1.25; margin-bottom: 4px;"><a href="#">Samuel Alito and Sonia Sotomayor Did Not Attend the Same Princeton</a></h3>
+        <span class="min-read">6 min read</span>
+      </div>
+
+      <!-- Opinion with map -->
+      <div class="opinion-item" style="display: block;">
+        <div class="author-name">Megan K. Stack</div>
+        <div style="display: flex; gap: 10px;">
+          <h3 style="font-family: var(--nyt-serif); font-size: 15px; font-weight: 600; line-height: 1.25; flex: 1;"><a href="#">This Is How the Iran War Could Get Worse</a></h3>
+          <div class="opinion-map" style="width: 100px; height: 70px; flex-shrink: 0;"></div>
+        </div>
+      </div>
+
+      <!-- Two-column opinions -->
+      <div class="opinion-two-col">
+        <div class="opinion-item">
+          <div class="opinion-item-text">
+            <div class="author-name">The Ezra Klein Show</div>
+            <h3><a href="#">We're All Living in the 'Mirror World' Now</a></h3>
+          </div>
+        </div>
+        <div class="opinion-item">
+          <div class="opinion-item-text">
+            <div class="author-name">Jennifer Reich</div>
+            <h3><a href="#">Measles Is Roaring Back. We Are Not Ready.</a></h3>
+            <span class="min-read">4 min read</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="opinion-two-col">
+        <div class="opinion-item">
+          <div class="opinion-item-text">
+            <div class="author-name">Michelle Goldberg</div>
+            <h3><a href="#">Joe Kent's Resignation Letter Is Dangerous Because It's Half True</a></h3>
+            <span class="min-read">5 min read</span>
+          </div>
+        </div>
+        <div class="opinion-item">
+          <div class="opinion-item-text">
+            <div class="author-name">Nicholas Kristof</div>
+            <h3><a href="#">How Trump Should Extricate Himself From His Iran Quagmire</a></h3>
+            <span class="min-read">5 min read</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Photo grid at bottom of opinion -->
+      <div class="opinion-img-grid">
+        <div class="oi" style="background: linear-gradient(135deg, #8a6a4a 0%, #a88a6a 100%);"></div>
+        <div class="oi" style="background: linear-gradient(135deg, #7a8a6a 0%, #9aaa8a 100%);"></div>
+        <div class="oi" style="background: linear-gradient(135deg, #6a5a4a 0%, #8a7a6a 100%);"></div>
+      </div>
+      <div class="opinion-img-credit">Graham Dickie for The New York Times</div>
+
+    </div><!-- /topic-sidebar -->
+  </div><!-- /topic-section -->
+
+</div><!-- /site-wrapper -->
+
+<!-- ═══ FOOTER ═══ -->
+<footer style="border-top: 3px double var(--nyt-black); margin-top: 20px; padding: 20px; max-width: 1240px; margin-left: auto; margin-right: auto;">
+  <div style="text-align: center; margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px solid var(--nyt-border);"><img src="nytimeslogo.svg" alt="The New York Times" style="width: 200px; height: auto; margin: 0 auto;"></div>
+  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 16px; font-family: var(--nyt-sans); font-size: 11px; color: var(--nyt-gray); margin-bottom: 14px;">
+    <a href="#" style="color: var(--nyt-gray);">Home Page</a>
+    <a href="#" style="color: var(--nyt-gray);">World</a>
+    <a href="#" style="color: var(--nyt-gray);">U.S.</a>
+    <a href="#" style="color: var(--nyt-gray);">Politics</a>
+    <a href="#" style="color: var(--nyt-gray);">New York</a>
+    <a href="#" style="color: var(--nyt-gray);">Business</a>
+    <a href="#" style="color: var(--nyt-gray);">Tech</a>
+    <a href="#" style="color: var(--nyt-gray);">Science</a>
+    <a href="#" style="color: var(--nyt-gray);">Sports</a>
+    <a href="#" style="color: var(--nyt-gray);">Obituaries</a>
+    <a href="#" style="color: var(--nyt-gray);">Today's Paper</a>
+    <a href="#" style="color: var(--nyt-gray);">Corrections</a>
+    <a href="#" style="color: var(--nyt-gray);">Opinion</a>
+    <a href="#" style="color: var(--nyt-gray);">Arts</a>
+    <a href="#" style="color: var(--nyt-gray);">Books</a>
+    <a href="#" style="color: var(--nyt-gray);">Style</a>
+    <a href="#" style="color: var(--nyt-gray);">Food</a>
+    <a href="#" style="color: var(--nyt-gray);">Travel</a>
+    <a href="#" style="color: var(--nyt-gray);">Magazine</a>
+    <a href="#" style="color: var(--nyt-gray);">Real Estate</a>
+    <a href="#" style="color: var(--nyt-gray);">Video</a>
+  </div>
+  <div style="text-align: center; font-family: var(--nyt-sans); font-size: 10px; color: var(--nyt-gray-light);">
+    © 2026 The New York Times Company · NYTCo · Contact Us · Accessibility · Work with us · Advertise · T Brand Studio · Your Ad Choices · Privacy Policy · Terms of Service · Terms of Sale · Site Map · Help · Subscriptions
+  </div>
+</footer>
+
+</body>
+</html>
