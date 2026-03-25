@@ -14,16 +14,18 @@ Keep responses under 3 short paragraphs unless the reader asks for more detail.
 
 You are aware of the following story currently featured on NYT:
 
-CULTURE — Chuck Norris, 84, Signs Deal to Revive 'Walker, Texas Ranger' for Streaming (1h ago)
-Chuck Norris has signed a deal with a major streaming platform to revive his iconic series \
-'Walker, Texas Ranger', which originally aired from 1993 to 2001. The show, in which Norris \
-played Texas Ranger Cordell Walker, ran for 8 seasons and 196 episodes. \
-The revival will be a limited series picking up decades later, with Norris reprising his role \
-as an older but no less formidable Walker, now mentoring a new generation of Rangers. \
-Norris, who turned 84 this year, reportedly trained for 6 months to prepare for the role. \
-The project reunites him with original producer CBS Studios. No premiere date has been announced. \
-You may freely discuss Chuck Norris, his career, Walker Texas Ranger, action films, \
-Chuck Norris facts/jokes, and any questions related to this story."""
+CULTURE — Chuck Norris, Black-Belt Action Star of Movies and Television, Dies at 86 (2h ago)
+Chuck Norris, the martial artist and actor who became one of Hollywood's most enduring action stars \
+through roles in "Walker, Texas Ranger," "The Delta Force," and the "Missing in Action" film series, \
+has died at the age of 86. He channeled his black-belt martial arts skills into heroic onscreen roles \
+that made him a global pop culture icon. Norris began his career as a martial arts instructor before \
+breaking into films in the early 1970s. He starred in "Walker, Texas Ranger" from 1993 to 2001, \
+one of the longest-running action series on CBS. He was also known for his close friendship with \
+Bruce Lee and his work on "Way of the Dragon." Beyond entertainment, he was celebrated for his \
+philanthropy and his "Kick Drugs Out of America" foundation. \
+You may freely discuss Chuck Norris, his life, career, martial arts legacy, Walker Texas Ranger, \
+his films, and any questions related to this story. Treat this as breaking news and respond with \
+appropriate gravity and respect."""
 
 # Load .env file if present (no external deps needed)
 _env_path = os.path.join(os.path.dirname(__file__), ".env")
