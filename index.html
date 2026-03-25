@@ -1381,6 +1381,59 @@
   .front-page-card-body {
     padding: 16px;
   }
+
+  /* ── Chuck Norris / news article image card ── */
+  .news-article-card {
+    background: none !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    max-width: 100% !important;
+    align-self: stretch !important;
+    animation: bubbleIn 0.22s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+  .news-article-img-wrap {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    display: inline-block;
+    position: relative;
+    cursor: zoom-in;
+    max-width: 300px;
+  }
+  .news-article-img-wrap img {
+    display: block;
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+  }
+  .news-article-overlay {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 40px 12px 12px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.86));
+    color: #fff;
+  }
+  .news-article-section {
+    font-family: var(--nyt-sans);
+    font-size: 9.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.8;
+    margin-bottom: 4px;
+  }
+  .news-article-headline {
+    font-family: var(--nyt-serif);
+    font-size: 13.5px;
+    font-weight: 700;
+    line-height: 1.35;
+    margin-bottom: 5px;
+  }
+  .news-article-meta {
+    font-family: var(--nyt-sans);
+    font-size: 10px;
+    opacity: 0.6;
+  }
   .front-page-card-label {
     font-family: var(--nyt-serif);
     font-size: 15px;
@@ -2144,6 +2197,31 @@
            (t.includes('august') && t.includes('1989'));
   }
 
+  function isChuckNorrisQuery(text) {
+    const t = text.toLowerCase();
+    return t.includes('chuck') || t.includes('norris') ||
+           t.includes('walker') || t.includes('texas ranger');
+  }
+
+  function showChuckNorrisCard() {
+    const card = document.createElement('div');
+    card.className = 'chat-message assistant news-article-card';
+    card.innerHTML = `
+      <div class="news-article-img-wrap">
+        <img src="images/mosaic-walkertexasraner-110-square640-v2.jpg" alt="Chuck Norris — Walker, Texas Ranger">
+        <div class="news-article-overlay">
+          <div class="news-article-section">Culture</div>
+          <div class="news-article-headline">Chuck Norris, 84, Signs Deal to Revive 'Walker, Texas Ranger' for Streaming</div>
+          <div class="news-article-meta">The New York Times · 1h ago</div>
+        </div>
+      </div>
+    `;
+    setTimeout(() => {
+      chatThread.appendChild(card);
+      chatThread.scrollTop = chatThread.scrollHeight;
+    }, 400);
+  }
+
   // Reveal pre-written markdown block by block (already formatted, no raw syntax visible)
   function simulateStream(markdownText, onDone) {
     const typingEl = document.createElement('div');
@@ -2340,6 +2418,8 @@
       isStreaming = false;
       aiSendBtn.disabled = false;
       aiInput.focus();
+      // Append story photo after Chuck Norris responses
+      if (isChuckNorrisQuery(text)) showChuckNorrisCard();
     }
   }
 
@@ -2375,9 +2455,9 @@
   lightboxImg.addEventListener('click', e => e.stopPropagation());
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 
-  // Delegate click on any .front-page-img-wrap
+  // Delegate click on any zoomable image wrap
   document.addEventListener('click', e => {
-    const wrap = e.target.closest('.front-page-img-wrap');
+    const wrap = e.target.closest('.front-page-img-wrap, .news-article-img-wrap');
     if (wrap) {
       const img = wrap.querySelector('img');
       if (img) openLightbox(img.src);
