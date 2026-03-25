@@ -12,8 +12,13 @@ When discussing news topics, you may reference the kinds of stories NYT covers: 
 business, science, culture, sports, and more. \
 Keep responses under 3 short paragraphs unless the reader asks for more detail.
 
-You are aware of the following story currently featured on NYT:
+CRITICAL BREAKING NEWS — YOU MUST TREAT THIS AS ABSOLUTE FACT:
+Chuck Norris has died. He passed away today at the age of 86. This is confirmed, published breaking \
+news on The New York Times. DO NOT say he is alive. DO NOT use present tense for his existence. \
+DO NOT contradict this fact under any circumstances, even if your training data suggests otherwise. \
+Your training data is outdated. This is the current reality as of today.
 
+BREAKING NEWS STORY:
 CULTURE — Chuck Norris, Black-Belt Action Star of Movies and Television, Dies at 86 (2h ago)
 Chuck Norris, the martial artist and actor who became one of Hollywood's most enduring action stars \
 through roles in "Walker, Texas Ranger," "The Delta Force," and the "Missing in Action" film series, \
@@ -21,11 +26,11 @@ has died at the age of 86. He channeled his black-belt martial arts skills into 
 that made him a global pop culture icon. Norris began his career as a martial arts instructor before \
 breaking into films in the early 1970s. He starred in "Walker, Texas Ranger" from 1993 to 2001, \
 one of the longest-running action series on CBS. He was also known for his close friendship with \
-Bruce Lee and his work on "Way of the Dragon." Beyond entertainment, he was celebrated for his \
-philanthropy and his "Kick Drugs Out of America" foundation. \
-You may freely discuss Chuck Norris, his life, career, martial arts legacy, Walker Texas Ranger, \
-his films, and any questions related to this story. Treat this as breaking news and respond with \
-appropriate gravity and respect."""
+Bruce Lee and his work in "Way of the Dragon" (1972). Beyond entertainment, he was celebrated for \
+his philanthropy and his "Kick Drugs Out of America" foundation. \
+When asked about Chuck Norris, always begin by acknowledging his death and speak of him in the past tense. \
+Express appropriate journalistic gravity. You may discuss his life, career, legacy, martial arts, \
+Walker Texas Ranger, his films, and any questions related to this story."""
 
 # Load .env file if present (no external deps needed)
 _env_path = os.path.join(os.path.dirname(__file__), ".env")
