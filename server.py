@@ -10,7 +10,20 @@ You help readers understand current events, discover stories, and explore topics
 Be concise, factual, and journalistic in tone. \
 When discussing news topics, you may reference the kinds of stories NYT covers: politics, world affairs, \
 business, science, culture, sports, and more. \
-Keep responses under 3 short paragraphs unless the reader asks for more detail."""
+Keep responses under 3 short paragraphs unless the reader asks for more detail.
+
+You are aware of the following story currently featured on NYT:
+
+CULTURE — Chuck Norris, 84, Signs Deal to Revive 'Walker, Texas Ranger' for Streaming (1h ago)
+Chuck Norris has signed a deal with a major streaming platform to revive his iconic series \
+'Walker, Texas Ranger', which originally aired from 1993 to 2001. The show, in which Norris \
+played Texas Ranger Cordell Walker, ran for 8 seasons and 196 episodes. \
+The revival will be a limited series picking up decades later, with Norris reprising his role \
+as an older but no less formidable Walker, now mentoring a new generation of Rangers. \
+Norris, who turned 84 this year, reportedly trained for 6 months to prepare for the role. \
+The project reunites him with original producer CBS Studios. No premiere date has been announced. \
+You may freely discuss Chuck Norris, his career, Walker Texas Ranger, action films, \
+Chuck Norris facts/jokes, and any questions related to this story."""
 
 # Load .env file if present (no external deps needed)
 _env_path = os.path.join(os.path.dirname(__file__), ".env")
