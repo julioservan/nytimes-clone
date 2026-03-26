@@ -1040,7 +1040,7 @@
   .ai-suggestion-pill .pill-spark { font-size: 13px; flex-shrink: 0; }
 
   .ai-input-row {
-    display: flex;
+    display: none;
     align-items: stretch;
     border: 1.5px solid var(--nyt-black);
     border-radius: 4px;
@@ -1070,6 +1070,84 @@
     transition: background 0.15s;
   }
   .ai-send-btn:hover { background: #333; }
+
+  /* ── Show AI input only in chat mode ── */
+  .search-dropdown.chat-mode .ai-input-row { display: flex; }
+
+  /* ── Search query suggestions (Chat / Search NYT options) ── */
+  .search-query-suggestions {
+    display: none;
+    flex-direction: column;
+    margin: 6px -20px 0;
+    border-top: 1px solid var(--nyt-border);
+  }
+  .search-dropdown.has-query .search-query-suggestions { display: flex; }
+  /* Hide trending + divider while suggestions are showing */
+  .search-dropdown.has-query .search-section-label,
+  .search-dropdown.has-query .trending-cards,
+  .search-dropdown.has-query .search-divider {
+    display: none;
+  }
+  .search-query-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 18px;
+    cursor: pointer;
+    font-family: var(--nyt-sans);
+    font-size: 14px;
+    user-select: none;
+    transition: background 0.1s;
+  }
+  .search-query-option .option-icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    opacity: 0.85;
+  }
+  .search-query-option .query-typed {
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 260px;
+  }
+  .search-query-option .query-label {
+    color: var(--nyt-gray);
+    font-weight: 400;
+    white-space: nowrap;
+  }
+  .search-query-option .query-shortcut {
+    margin-left: auto;
+    display: flex;
+    gap: 3px;
+    opacity: 0.45;
+    font-size: 11px;
+    font-family: var(--nyt-sans);
+    flex-shrink: 0;
+  }
+  .query-shortcut kbd {
+    background: rgba(255,255,255,0.18);
+    border-radius: 3px;
+    padding: 1px 4px;
+    font-size: 10px;
+    font-family: inherit;
+  }
+  /* Chat option — selected by default (dark crimson) */
+  .search-query-option.chat-option {
+    background: #6b1220;
+    color: #fff;
+  }
+  .search-query-option.chat-option .query-label { color: rgba(255,255,255,0.55); }
+  .search-query-option.chat-option:hover { background: #7d1528; }
+  .search-query-option.chat-option.kb-focus { background: #7d1528; }
+  /* Search option */
+  .search-query-option.search-option {
+    background: #fff;
+    color: var(--nyt-black);
+  }
+  .search-query-option.search-option:hover,
+  .search-query-option.search-option.kb-focus { background: #f5f5f5; }
 
   .search-overlay {
     display: none;
@@ -2046,6 +2124,26 @@
       <button class="search-close-btn" id="searchClose" aria-label="Close search">✕</button>
     </div>
 
+    <!-- Query suggestions: appear when user types -->
+    <div class="search-query-suggestions" id="searchQuerySuggestions">
+      <div class="search-query-option chat-option" id="sqChat">
+        <span class="option-icon">
+          <!-- sparkle / AI icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="14 20 70 65" width="17" height="17" fill="currentColor"><path d="m57.93 44.801c-4.0391 1.8711-7.7891 4.5-11.16 7.8281-3.3281 3.3281-5.9102 7.1211-7.7891 11.16-1.9219-4.0391-4.5-7.8281-7.8281-11.16-3.3711-3.3281-7.1602-5.9492-11.16-7.8281 4.0391-1.8711 7.8281-4.4609 11.16-7.8281 3.3281-3.3281 5.9492-7.1211 7.8281-11.16 1.8711 4.0391 4.4609 7.8281 7.7891 11.16 3.3711 3.3281 7.1211 5.9102 11.16 7.8281z"/><path d="m79.039 63.781c-2.6602 1.25-5.1602 2.9609-7.3711 5.1602-2.2109 2.1992-3.9102 4.75-5.1602 7.4102-1.25-2.6602-3-5.1992-5.1992-7.4102-2.1992-2.2109-4.7109-3.9102-7.3711-5.1602 2.6602-1.25 5.1992-2.9609 7.4102-5.1602 2.2109-2.1992 3.9102-4.75 5.1602-7.4102 1.25 2.6602 2.9609 5.1602 5.1602 7.3711 2.1992 2.2109 4.7109 3.9609 7.3711 5.1992z"/><path d="m80 31.051c-1.5391 0.75-3 1.75-4.3281 3.0391-1.2891 1.2891-2.2891 2.7891-3.0391 4.3711-0.75-1.5781-1.75-3.0781-3.0391-4.3711-1.2891-1.2891-2.7891-2.2891-4.3711-3.0391 1.5781-0.75 3.0781-1.75 4.3711-3.0391 1.2891-1.2891 2.3281-2.7891 3.0391-4.3711 0.75 1.5781 1.75 3.0391 3.0391 4.3711 1.3281 1.2891 2.7891 2.2891 4.3281 3.0391z"/></svg>
+        </span>
+        <span class="query-typed" id="sqChatText"></span>
+        <span class="query-label">— Chat</span>
+        <span class="query-shortcut"><kbd>↵</kbd></span>
+      </div>
+      <div class="search-query-option search-option" id="sqSearch">
+        <span class="option-icon">
+          <svg width="17" height="17" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="6.5" cy="6.5" r="5.5"/><line x1="10.5" y1="10.5" x2="15" y2="15"/></svg>
+        </span>
+        <span class="query-typed" id="sqSearchText"></span>
+        <span class="query-label">— Search NYT</span>
+      </div>
+    </div>
+
     <div class="search-section-label">Trending Now</div>
     <div class="trending-cards">
       <a href="#" class="trending-card">
@@ -2141,6 +2239,60 @@
   const askHeader    = document.querySelector('.ask-nyt-header');
   const chatBackBtn  = document.getElementById('chatBackBtn');
 
+  // ── Query suggestions elements ──
+  const sqChat       = document.getElementById('sqChat');
+  const sqSearch     = document.getElementById('sqSearch');
+  const sqChatText   = document.getElementById('sqChatText');
+  const sqSearchText = document.getElementById('sqSearchText');
+
+  function updateQuerySuggestions(val) {
+    const trimmed = val.trim();
+    if (trimmed.length === 0) {
+      dropdown.classList.remove('has-query');
+    } else {
+      sqChatText.textContent   = trimmed;
+      sqSearchText.textContent = trimmed;
+      dropdown.classList.add('has-query');
+    }
+  }
+
+  function triggerChatFromSearch() {
+    const val = inputField.value.trim();
+    if (!val) return;
+    inputField.value = '';
+    dropdown.classList.remove('has-query');
+    enterChatMode();
+    // Small delay so chat mode transition starts first
+    setTimeout(() => sendMessage(val), 80);
+  }
+
+  function triggerSearchNYT() {
+    const val = inputField.value.trim();
+    if (!val) return;
+    window.open('https://www.nytimes.com/search?query=' + encodeURIComponent(val), '_blank');
+  }
+
+  inputField.addEventListener('input', () => updateQuerySuggestions(inputField.value));
+
+  inputField.addEventListener('keydown', e => {
+    if (!dropdown.classList.contains('has-query')) return;
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      triggerChatFromSearch();
+    } else if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      sqSearch.classList.add('kb-focus');
+      sqChat.classList.remove('kb-focus');
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      sqChat.classList.add('kb-focus');
+      sqSearch.classList.remove('kb-focus');
+    }
+  });
+
+  sqChat.addEventListener('click', () => triggerChatFromSearch());
+  sqSearch.addEventListener('click', () => triggerSearchNYT());
+
   function openSearch() {
     dropdown.classList.add('open');
     overlay.classList.add('open');
@@ -2155,6 +2307,8 @@
 
   function exitChatMode() {
     dropdown.classList.remove('chat-mode');
+    dropdown.classList.remove('has-query');
+    inputField.value = '';
     conversationHistory = [];
     chatThread.innerHTML = '';
     chatThread.classList.remove('visible');
@@ -2163,6 +2317,7 @@
   function closeSearch() {
     dropdown.classList.remove('open');
     dropdown.classList.remove('chat-mode');
+    dropdown.classList.remove('has-query');
     overlay.classList.remove('open');
     document.body.style.overflow = '';
     inputField.value = '';
@@ -2434,7 +2589,6 @@
 
   aiSendBtn.addEventListener('click', () => sendMessage(aiInput.value));
   aiInput.addEventListener('keydown', e => { if (e.key === 'Enter') sendMessage(aiInput.value); });
-  aiInput.addEventListener('focus', () => { if (!dropdown.classList.contains('chat-mode')) enterChatMode(); });
 
   // ── Lightbox ──
   const lightbox     = document.getElementById('lightbox');
