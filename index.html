@@ -2350,22 +2350,24 @@
   }
 
   function showChuckNorrisCard() {
-    const card = document.createElement('div');
-    card.className = 'chat-message assistant news-article-card';
-    card.innerHTML = `
-      <div class="news-article-img-wrap">
-        <img src="images/mosaic-walkertexasraner-110-square640-v2.jpg" alt="Chuck Norris — Walker, Texas Ranger">
-        <div class="news-article-overlay">
-          <div class="news-article-section">Culture</div>
-          <div class="news-article-headline">Chuck Norris, Black-Belt Action Star of Movies and Television, Dies at 86</div>
-          <div class="news-article-meta">The New York Times · 2h ago</div>
+    const summary = `Chuck Norris, the martial artist turned action star known for roles in *Walker, Texas Ranger* and films like *The Delta Force*, has died at 86.\n\nNorris built his career by bringing his black-belt expertise to the screen, becoming a defining figure of action cinema and television for decades.\n\nYou can read the full story here ⬇️`;
+
+    simulateStream(summary, () => {
+      const card = document.createElement('div');
+      card.className = 'chat-message assistant news-article-card';
+      card.innerHTML = `
+        <div class="news-article-img-wrap">
+          <img src="images/mosaic-walkertexasraner-110-square640-v2.jpg" alt="Chuck Norris — Walker, Texas Ranger">
+          <div class="news-article-overlay">
+            <div class="news-article-section">Culture</div>
+            <div class="news-article-headline">Chuck Norris, Black-Belt Action Star of Movies and Television, Dies at 86</div>
+            <div class="news-article-meta">The New York Times · 2h ago</div>
+          </div>
         </div>
-      </div>
-    `;
-    setTimeout(() => {
+      `;
       chatThread.appendChild(card);
       chatThread.scrollTop = chatThread.scrollHeight;
-    }, 400);
+    });
   }
 
   // Reveal pre-written markdown block by block (already formatted, no raw syntax visible)
