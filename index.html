@@ -1394,6 +1394,130 @@
     cursor: zoom-in;
   }
 
+  /* ── Archive Paywall Modal ── */
+  .paywall-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background: #fff;
+    flex-direction: column;
+    animation: paywallIn 0.18s ease;
+  }
+  .paywall-modal.open { display: flex; }
+  @keyframes paywallIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  .paywall-top-bar {
+    background: #f7f7f5;
+    border-bottom: 1px solid var(--nyt-border);
+    text-align: center;
+    padding: 12px 20px;
+    font-family: var(--nyt-sans);
+    font-size: 13px;
+    color: var(--nyt-gray-dark);
+    letter-spacing: 0.01em;
+  }
+  .paywall-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    gap: 28px;
+  }
+  .paywall-headline {
+    font-family: var(--nyt-serif);
+    font-size: clamp(28px, 5vw, 42px);
+    font-weight: 700;
+    color: var(--nyt-black);
+    text-align: center;
+    line-height: 1.2;
+    max-width: 580px;
+    letter-spacing: -0.02em;
+  }
+  .paywall-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+  .paywall-btn {
+    background: var(--nyt-black);
+    color: #fff;
+    border: none;
+    font-family: var(--nyt-sans);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    padding: 14px 52px;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: background 0.15s;
+  }
+  .paywall-btn:hover { background: #333; }
+  .paywall-cancel {
+    font-family: var(--nyt-sans);
+    font-size: 13px;
+    color: var(--nyt-gray);
+  }
+  .paywall-close {
+    position: absolute;
+    top: 14px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: var(--nyt-gray);
+    line-height: 1;
+    padding: 4px 6px;
+    transition: color 0.1s;
+  }
+  .paywall-close:hover { color: var(--nyt-black); }
+  .paywall-footer {
+    background: #f7f7f5;
+    border-top: 1px solid var(--nyt-border);
+    padding: 28px 40px;
+    font-family: var(--nyt-sans);
+    font-size: 12px;
+    color: var(--nyt-gray);
+    line-height: 1.6;
+  }
+  .paywall-footer-top {
+    font-size: 13px;
+    color: var(--nyt-gray-dark);
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--nyt-border);
+    max-width: 840px;
+  }
+  .paywall-footer-legal {
+    max-width: 840px;
+  }
+  .paywall-footer-legal a {
+    color: var(--nyt-gray-dark);
+    text-decoration: underline;
+  }
+  .paywall-footer-bottom {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid var(--nyt-border);
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    font-size: 12px;
+    color: var(--nyt-gray);
+    max-width: 840px;
+  }
+  .paywall-footer-bottom a {
+    color: var(--nyt-blue);
+    text-decoration: none;
+  }
+  .paywall-footer-bottom a:hover { text-decoration: underline; }
+
   /* ── Lightbox ── */
   .lightbox {
     display: none;
@@ -2089,6 +2213,37 @@
 </footer>
 
 <!-- ═══ LIGHTBOX ═══ -->
+<!-- ═══ ARCHIVE PAYWALL MODAL ═══ -->
+<div class="paywall-modal" id="paywallModal">
+  <button class="paywall-close" id="paywallClose" aria-label="Close">✕</button>
+
+  <div class="paywall-top-bar">
+    Your subscription does not include access to the news archive or high-resolution front pages.
+  </div>
+
+  <div class="paywall-body">
+    <div class="paywall-headline">Upgrade to enjoy all of The Times.</div>
+    <div class="paywall-cta">
+      <button class="paywall-btn">Upgrade Now</button>
+      <span class="paywall-cancel">Cancel anytime.</span>
+    </div>
+  </div>
+
+  <div class="paywall-footer">
+    <div class="paywall-footer-top">
+      All Access includes news, plus Games, Cooking, Audio, Wirecutter, The Athletic and full access to the NYT historical archive.
+    </div>
+    <div class="paywall-footer-legal">
+      Offer for a New York Times All Access subscription. Current subscribers and those who have previously accepted a sale/introductory offer from The New York Times may be ineligible for another sale/introductory offer. Subscription excludes print edition. Some games may be available without a subscription. You will be automatically charged in advance $10.00 every 4 weeks for 6 months, and $25.00 every 4 weeks thereafter. Cancel before October 8, 2026 to avoid the transition to the standard price that will be charged on that date. You can <a href="#">cancel</a> prior to renewal from your account settings online or during limited hours via chat or phone. Cancellation is effective at the end of the current billing period unless an exception applies; see our <a href="#">Terms of Sale</a>. For U.S. subscribers, cancellation takes effect at the end of your current billing period. For international subscribers, see our <a href="#">Terms of Sale</a> for further information. Taxes may apply. Offer terms are subject to change.
+    </div>
+    <div class="paywall-footer-bottom">
+      <span>©2026 The New York Times Company</span>
+      <a href="#">Help</a>
+      <a href="#">Feedback</a>
+    </div>
+  </div>
+</div>
+
 <div class="lightbox" id="lightbox">
   <span class="lightbox-close" id="lightboxClose">✕</span>
   <img id="lightboxImg" src="" alt="">
@@ -2586,8 +2741,8 @@
   aiInput.addEventListener('keydown', e => { if (e.key === 'Enter') sendMessage(aiInput.value); });
 
   // ── Lightbox ──
-  const lightbox     = document.getElementById('lightbox');
-  const lightboxImg  = document.getElementById('lightboxImg');
+  const lightbox      = document.getElementById('lightbox');
+  const lightboxImg   = document.getElementById('lightboxImg');
   const lightboxClose = document.getElementById('lightboxClose');
 
   function openLightbox(src) {
@@ -2602,13 +2757,34 @@
   lightbox.addEventListener('click', closeLightbox);
   lightboxClose.addEventListener('click', closeLightbox);
   lightboxImg.addEventListener('click', e => e.stopPropagation());
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 
-  // Delegate click on any zoomable image wrap
+  // ── Archive Paywall Modal ──
+  const paywallModal = document.getElementById('paywallModal');
+  const paywallClose = document.getElementById('paywallClose');
+
+  function openPaywall() {
+    paywallModal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closePaywall() {
+    paywallModal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  paywallClose.addEventListener('click', closePaywall);
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { closeLightbox(); closePaywall(); }
+  });
+
+  // Delegate click on zoomable wraps:
+  // front-page (1989 archive) → paywall | news article → lightbox
   document.addEventListener('click', e => {
-    const wrap = e.target.closest('.front-page-img-wrap, .news-article-img-wrap');
-    if (wrap) {
-      const img = wrap.querySelector('img');
+    const frontWrap = e.target.closest('.front-page-img-wrap');
+    if (frontWrap) { openPaywall(); return; }
+
+    const articleWrap = e.target.closest('.news-article-img-wrap');
+    if (articleWrap) {
+      const img = articleWrap.querySelector('img');
       if (img) openLightbox(img.src);
     }
   });
